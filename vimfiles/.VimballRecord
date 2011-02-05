@@ -1,0 +1,2 @@
+screen.vba: call delete('/Users/rssvihla/.vim/autoload/screen.vim')|call delete('/Users/rssvihla/.vim/doc/screen.txt')|call delete('/Users/rssvihla/.vim/plugin/screen.vim')
+Align.vba: call delete('/Users/rssvihla/.vim/plugin/AlignPlugin.vim')|call delete('/Users/rssvihla/.vim/plugin/AlignMapsPlugin.vim')|call delete('/Users/rssvihla/.vim/plugin/cecutil.vim')|call delete('/Users/rssvihla/.vim/doc/Align.txt')|call delete('/Users/rssvihla/.vim/autoload/Align.vim')|call delete('/Users/rssvihla/.vim/autoload/AlignMaps.vim')
