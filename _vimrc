@@ -212,6 +212,10 @@ nmap <silent>scp       <Plug>SQLU_CreateProcedure<CR>
 if has("mac")
 set t_Co=256
 set backupskip=/tmp/*,/private/tmp/*" 
+" vundle
+set rtp+=~/.vim/vundle.git/ 
+call vundle#rc()
+" Bundles:
 endif
 " Windows *********************************************************************
 if has("gui_win32")
@@ -226,7 +230,3 @@ endif
 set backupdir=~/.vimbackup
 set dir=~/.vimswap
 
-" vundle
-set rtp+=~/.vim/vundle.git/ 
-call vundle#rc()
-" Bundles:
