@@ -9,7 +9,6 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
 
-set t_Co=256
 :colorscheme railscasts
 
 " When started as "evim", evim.vim will already have done these settings.
@@ -98,10 +97,6 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" Prevents my source tree from being trashed by silliness
-set backupskip=/tmp/*,/private/tmp/*" 
-set backupdir=~/.vimbackup
-set dir=~/.vimswap
 
 " Tabs ************************************************************************
 "set sta " a <Tab> in an indent inserts 'shiftwidth' spaces
@@ -208,8 +203,30 @@ nmap <silent>scdt      <Plug>SQLU_GetColumnDataType<CR>
 nmap <silent>scp       <Plug>SQLU_CreateProcedure<CR> 
 
 
+" -----------------------------------------------------------------------------
+" | OS Specific |
+" | (GUI stuff goes in gvimrc) |
+" -----------------------------------------------------------------------------
 
+" Mac *************************************************************************
+if has("mac")
+set t_Co=256
+set backupskip=/tmp/*,/private/tmp/*" 
+" vundle
 set rtp+=~/.vim/vundle.git/ 
 call vundle#rc()
-
 " Bundles:
+endif
+" Windows *********************************************************************
+if has("gui_win32")
+set t_Co=256
+let g:ruby_path = ':C:\Ruby192\bin'
+endif
+if has("win32")
+let g:ruby_path = ':C:\Ruby192\bin'
+:colorscheme vividchalk
+endif
+" Prevents my source tree from being trashed by silliness
+set backupdir=~/.vimbackup
+set dir=~/.vimswap
+
