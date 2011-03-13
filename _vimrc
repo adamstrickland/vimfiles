@@ -10,7 +10,7 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 :colorscheme railscasts
-
+:au BufNewFile,BufRead *.boo setf boo 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -20,6 +20,8 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+"clipboard support
+set clipboard=unnamed
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
