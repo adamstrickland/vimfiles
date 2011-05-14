@@ -3,3 +3,7 @@ vim73
 vimfiles_old
 _vimrc_old
 .DS_Store
+vimfiles/ruby/command-t/Makefile
+vimfiles/ruby/command-t/*.o
+vimfiles/ruby/command-t/*.so
+vimfiles/ruby/command-t/mkmf.log
