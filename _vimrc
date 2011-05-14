@@ -1,234 +1,50 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-:colorscheme railscasts
-:au BufNewFile,BufRead *.boo setf boo 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-"clipboard support
-set clipboard=unnamed
-" allow backspacing over everything in insert mode
+"tabs and other goods taken from web
+set hidden
+set expandtab
+set nowrap        " don't wrap lines
+set tabstop=4     " a tab is four spaces
+set shiftwidth=4  " number of spaces to use for autoindenting
 set backspace=indent,eol,start
+                  " allow backspacing over everything in insert mode
+set autoindent    " always set autoindenting on
+set copyindent    " copy the previous indentation on autoindenting
+set number        " always show line numbers
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                  "    case-sensitive otherwise
+set smarttab      " insert tabs on the start of a line according to
+                  "    shiftwidth, not tabstop
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set pastetoggle=<F2>
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
+"backup files go away
+set nobackup
+set noswapfile
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
+"pretty stuff
+syntax on
+:colorscheme vividchalk
 
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+"autocommand foo
+set list
+"set listchars
+if has('autocmd')
+    filetype plugin indent on
 endif
 
-
-" Tabs ************************************************************************
-"set sta " a <Tab> in an indent inserts 'shiftwidth' spaces
-
-function! Tabstyle_tabs()
-  " Using 4 column tabs
-  set softtabstop=4
-  set shiftwidth=4
-  set tabstop=4
-  set noexpandtab
-  autocmd User Rails set softtabstop=4
-  autocmd User Rails set shiftwidth=4
-  autocmd User Rails set tabstop=4
-  autocmd User Rails set noexpandtab
-endfunction
-
-function! Tabstyle_spaces()
-  " Use 2 spaces
-  set softtabstop=2
-  set shiftwidth=2
-  set tabstop=2
-  set expandtab
-endfunction
-
-call Tabstyle_spaces()
-
-
-" Indenting *******************************************************************
-set ai " Automatically set the indent of a new line (local to buffer)
-set si " smartindent    (local to buffer)
-
-
-" Scrollbars ******************************************************************
-set sidescrolloff=2
-set numberwidth=4
-
-" Window switch
-map <F2> <C-w>w
-
-" fuzzy file finder
-map ,f :FuzzyFinderTextMate <CR>
-
-"taglist
-map ,t :TlistToggle <CR>
-let Tlist_Use_Right_Window = 1
-
-" nerd tree
-noremap ,n :NERDTreeToggle <CR>
-map ,cd :cd %:p:h<CR>
-
-"paste from web toggle
+"mappings
 nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F4>
 set showmode
 
-" Ruby stuff ******************************************************************
-compiler ruby         " Enable compiler support for rjmuby
-map <F5> :!ruby %<CR>
-
-" validates ruby syntax while in the file
-map ,ruby :!ruby -c %<CR>
-
-" extract to method
-noremap ,e :call Ruby_extract_method()<CR>
-function! Ruby_extract_method() range
-  let name = inputdialog("Name of new method:")
-  normal! '<d'>
-  exe "normal! kocaller = " . name
-  exe "normal! GO\<CR>def " . name . "\<CR>end"
-  normal! koRUBY_EXTRACT_METHOD
-  normal! ]pkdd
-endfunction
-
-
-" Omni Completion
-" *************************************************************
-autocmd FileType html :set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-" " May require ruby compiled in
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete 
-"
-
-" Invisible characters *********************************************************
-set listchars=trail:.,tab:>-,eol:$
-set nolist
-:noremap ,i :set list!<CR> " Toggle invisible chars
-
-" Snipmate author variable
-let g:snips_author = 'Ryan Svihla'
-
-" gherkin syntax highlighting 
-"au! Syntax gherkin source ~/.vim/syntax/cucumber.vim
-"
-"sql utils
-vmap <silent>sf        <Plug>SQLU_Formatter<CR>
-nmap <silent>scl       <Plug>SQLU_CreateColumnList<CR>
-nmap <silent>scd       <Plug>SQLU_GetColumnDef<CR>
-nmap <silent>scdt      <Plug>SQLU_GetColumnDataType<CR>
-nmap <silent>scp       <Plug>SQLU_CreateProcedure<CR> 
-
-
-" -----------------------------------------------------------------------------
-" | OS Specific |
-" | (GUI stuff goes in gvimrc) |
-" -----------------------------------------------------------------------------
-
-" Mac *************************************************************************
-if has("mac")
-set t_Co=256
-set backupskip=/tmp/*,/private/tmp/*" 
-" vundle
-set rtp+=~/.vim/vundle.git/ 
-call vundle#rc()
-" Bundles:
-endif
-" Windows *********************************************************************
-if has("gui_win32")
-set t_Co=256
-let g:ruby_path = ':C:\Ruby192\bin'
-endif
-if has("win32")
-let g:ruby_path = ':C:\Ruby192\bin'
-:colorscheme vividchalk
-endif
-" Prevents my source tree from being trashed by silliness
-set backupdir=~/.vimbackup
-set dir=~/.vimswap
+map <F2> <C-W>w
 
