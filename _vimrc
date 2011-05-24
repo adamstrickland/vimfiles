@@ -33,9 +33,20 @@ set noswapfile
 "pretty stuff
 syntax on
 :colorscheme vividchalk
+set list
 
 "autocommand foo
-set list
+:autocmd Filetype ruby set softtabstop=2
+:autocmd Filetype ruby set sw=2
+:autocmd Filetype ruby set ts=2
+
+:autocmd Filetype feature set softtabstop=2
+:autocmd Filetype feature set sw=2
+:autocmd Filetype feature set ts=2
+
+:autocmd Filetype haml set softtabstop=2
+:autocmd Filetype haml set sw=2
+:autocmd Filetype haml set ts=2
 "set listchars
 if has('autocmd')
     filetype plugin indent on
