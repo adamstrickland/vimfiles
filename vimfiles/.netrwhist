@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/rssvihla/.vim'
 let g:netrw_dirhist_2='/Users/rssvihla/Documents/Projects/ruby/alamocoders'
 let g:netrw_dirhist_3='/Users/rssvihla/Documents/Projects/vim/vimfiles/vimfiles/doc'
 let g:netrw_dirhist_4='/Users/rssvihla/Documents/Projects/ruby/alamocoders'
+let g:netrw_dirhist_5='/Users/rssvihla/Projects/foundational-invoicing/public'
+let g:netrw_dirhist_6='/Users/rssvihla/.ssh/config'
