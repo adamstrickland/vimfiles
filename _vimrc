@@ -33,7 +33,8 @@ set noswapfile
 "pretty stuff
 syntax on
 :colorscheme vividchalk
-set list
+"default hide whitespace
+set nolist
 
 "autocommand foo
 :autocmd Filetype ruby set softtabstop=2
@@ -56,6 +57,10 @@ endif
 nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F4>
 set showmode
-
+"cycle windows
 map <F2> <C-W>w
+"toggle whitespace
+map <F3> :set invlist <CR>
 
+"set clipboard
+set clipboard=unnamed
