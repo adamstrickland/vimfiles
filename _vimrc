@@ -1,3 +1,6 @@
+" add pathogen
+call pathogen#infect()
+
 "tabs and other goods taken from web
 set hidden
 set expandtab
@@ -48,6 +51,12 @@ set nolist
 :autocmd Filetype haml set softtabstop=2
 :autocmd Filetype haml set sw=2
 :autocmd Filetype haml set ts=2
+
+:autocmd Filetype coffee set softtabstop=2
+:autocmd Filetype coffee set sw=2
+:autocmd Filetype coffee set ts=2
+"
+
 "set listchars
 if has('autocmd')
     filetype plugin indent on
@@ -64,3 +73,11 @@ map <F3> :set invlist <CR>
 
 "set clipboard
 set clipboard=unnamed
+
+"mac only stuff
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin"
+    set shell=/usr/local/bin/zsh
+  endif
+endif
