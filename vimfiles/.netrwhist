@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/rssvihla/Projects/vimfiles/vimfiles'
-let g:netrw_dirhist_2='/Users/rssvihla/Downloads/peepcode-064-backbone-iii-1-code/9-complete'
-let g:netrw_dirhist_3='/Users/rssvihla/Downloads/peepcode-064-backbone-iii-1-code/9-complete/app/coffeescripts/time_log'
