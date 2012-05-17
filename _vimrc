@@ -55,7 +55,9 @@ set nolist
 :autocmd Filetype coffee set softtabstop=2
 :autocmd Filetype coffee set sw=2
 :autocmd Filetype coffee set ts=2
-"
+
+:autocmd Filetype cs set errorformat=\ %#%f(%l\\\,%c):\ %m
+:autocmd Filetype cs set makeprg=rake 
 
 "set listchars
 if has('autocmd')
@@ -81,3 +83,4 @@ if has("unix")
     set shell=/usr/local/bin/zsh
   endif
 endif
+
