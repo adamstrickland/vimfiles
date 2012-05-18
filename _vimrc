@@ -73,6 +73,10 @@ map <F2> <C-W>w
 "toggle whitespace
 map <F3> :set invlist <CR>
 
+"search for word
+let vim_working_dir = fnamemodify('.',':p:p')
+map <leader>n :execute "noautocmd vimgrep /" . expand("<cword>") . "/j " . vim_working_dir . "**/*." . expand("%:e")  <Bar> cw<CR>
+
 "set clipboard
 set clipboard=unnamed
 
