@@ -1,3 +1,6 @@
+" add pathogen
+call pathogen#infect()
+
 "tabs and other goods taken from web
 set hidden
 set expandtab
@@ -33,7 +36,8 @@ set noswapfile
 "pretty stuff
 syntax on
 :colorscheme vividchalk
-set list
+"default hide whitespace
+set nolist
 
 "autocommand foo
 :autocmd Filetype ruby set softtabstop=2
@@ -47,6 +51,12 @@ set list
 :autocmd Filetype haml set softtabstop=2
 :autocmd Filetype haml set sw=2
 :autocmd Filetype haml set ts=2
+
+:autocmd Filetype coffee set softtabstop=2
+:autocmd Filetype coffee set sw=2
+:autocmd Filetype coffee set ts=2
+"
+
 "set listchars
 if has('autocmd')
     filetype plugin indent on
@@ -56,6 +66,18 @@ endif
 nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F4>
 set showmode
-
+"cycle windows
 map <F2> <C-W>w
+"toggle whitespace
+map <F3> :set invlist <CR>
 
+"set clipboard
+set clipboard=unnamed
+
+"mac only stuff
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin"
+    set shell=/usr/local/bin/zsh
+  endif
+endif
