@@ -55,7 +55,9 @@ set nolist
 :autocmd Filetype coffee set softtabstop=2
 :autocmd Filetype coffee set sw=2
 :autocmd Filetype coffee set ts=2
-"
+
+:autocmd Filetype cs set errorformat=\ %#%f(%l\\\,%c):\ %m
+:autocmd Filetype cs set makeprg=rake 
 
 "set listchars
 if has('autocmd')
@@ -73,6 +75,11 @@ map <F3> :set invlist <CR>
 
 "set clipboard
 set clipboard=unnamed
+
+"search for word
+let vim_working_dir = fnamemodify('.',':p:p')
+map <leader>n :execute "noautocmd vimgrep /" . expand("<cword>") . "/j " . vim_working_dir . "**/*." . expand("%:e")  <Bar> cw<CR>
+
 
 "mac only stuff
 if has("unix")
