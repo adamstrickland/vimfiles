@@ -58,6 +58,10 @@ set nolist
 
 :autocmd Filetype cs set errorformat=\ %#%f(%l\\\,%c):\ %m
 :autocmd Filetype cs set makeprg=rake 
+au FileType cs set foldmethod=marker
+au FileType cs set foldmarker={,}
+au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+au FileType cs set foldlevelstart=2 
 
 "set listchars
 if has('autocmd')
