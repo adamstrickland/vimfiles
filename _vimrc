@@ -73,12 +73,13 @@ map <F2> <C-W>w
 "toggle whitespace
 map <F3> :set invlist <CR>
 
+"set clipboard
+set clipboard=unnamed
+
 "search for word
 let vim_working_dir = fnamemodify('.',':p:p')
 map <leader>n :execute "noautocmd vimgrep /" . expand("<cword>") . "/j " . vim_working_dir . "**/*." . expand("%:e")  <Bar> cw<CR>
 
-"set clipboard
-set clipboard=unnamed
 
 "mac only stuff
 if has("unix")
@@ -87,4 +88,3 @@ if has("unix")
     set shell=/usr/local/bin/zsh
   endif
 endif
-
