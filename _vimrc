@@ -62,6 +62,7 @@ au FileType cs set foldmethod=marker
 au FileType cs set foldmarker={,}
 au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 au FileType cs set foldlevelstart=2 
+au FileType cs set nofoldenable        "dont fold by default
 
 "set listchars
 if has('autocmd')
